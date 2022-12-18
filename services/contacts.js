@@ -25,6 +25,10 @@ const patchFavoriteById = async (id, fields) => {
   return Contact.findByIdAndUpdate({ _id: id }, {favorite}, { new: true });
 };
 
+const findByEmail = async email => {
+  return Contact.findOne({email});
+};
+
 module.exports = {
   getAll,
   getById,
@@ -32,4 +36,5 @@ module.exports = {
   delById,
   updateById,
   patchFavoriteById,
+  findByEmail,
 };

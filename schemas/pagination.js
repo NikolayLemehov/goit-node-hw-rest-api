@@ -6,6 +6,7 @@ const paginationSchema = Joi.object({
   limit: Joi.number()
     .integer()
     .min(1),
+  favorite: Joi.string(),
 });
 
 module.exports = paginationSchema;

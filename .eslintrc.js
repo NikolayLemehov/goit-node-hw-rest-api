@@ -9,6 +9,7 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
-    "semi": [2, "always"]
+    "semi": [2, "always"],
+    "comma-dangle": ["error", "always-multiline"],
   },
 };

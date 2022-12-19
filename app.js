@@ -4,7 +4,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const contactsRouter = require('./routes/api/contacts');
+const router = require('./routes/api');
 
 const {PORT = 3000, DB_HOST} = process.env;
 
@@ -26,7 +26,8 @@ const app = express();
   app.use(cors());
   app.use(express.json());
 
-  app.use('/api/contacts', contactsRouter);
+  app.use('/api/contacts', router.contacts);
+  app.use('/api/users', router.users);
 
   app.use((req, res) => {
     res.status(404).json({message: 'Not found'});

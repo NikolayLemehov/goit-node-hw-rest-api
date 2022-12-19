@@ -1,7 +1,9 @@
 const contactsModel = require("../../services/contacts");
 
 const getAll = async (req, res) => {
-  const contacts = await contactsModel.getAll();
+  const {page, limit} = req.query;
+  const {_id} = req.user;
+  const contacts = await contactsModel.getAll(_id, Number(page), Number(limit));
 
   res
     .status(200)

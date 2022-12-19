@@ -9,6 +9,8 @@ router.post('/register', validation(users.registerJoiSchema), ctrlWrapper(ctrl.r
 
 router.get('/login', validation(users.loginJoiSchema), ctrlWrapper(ctrl.login));
 
-router.get('/current', ctrlWrapper(auth), ctrlWrapper(ctrl.getCurrent));
+router.get('/current', auth, ctrlWrapper(ctrl.getCurrent));
+
+router.post('/logout', auth, ctrlWrapper(ctrl.logout));
 
 module.exports = router;

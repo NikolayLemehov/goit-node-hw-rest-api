@@ -1,13 +1,14 @@
 const express = require('express');
 const ctrl = require('../../controllers/contacts');
-const {validation, auth} = require('../../middlewares');
+const {validation, auth, validationQuery} = require('../../middlewares');
 const {contact} = require('../../models');
 
 const router = express.Router();
 const {ctrlWrapper} = require('../../middlewares');
+const {pagination} = require("../../schemas");
 
 
-router.get('/', auth, ctrlWrapper(ctrl.getAll));
+router.get('/', auth, validationQuery(pagination), ctrlWrapper(ctrl.getAll));
 
 router.get('/:contactId', ctrlWrapper(ctrl.getById));
 

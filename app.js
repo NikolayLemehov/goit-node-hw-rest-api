@@ -4,10 +4,6 @@ const cors = require('cors');
 
 const router = require('./routes/api');
 
-const a = 'a';
-console.log('test', a);
-
-
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';

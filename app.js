@@ -1,14 +1,12 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const mongoose = require('mongoose');
 
 const router = require('./routes/api');
 
 const a = 'a';
 console.log('test', a);
 
-mongoose.set('strictQuery', true);
 
 const app = express();
 

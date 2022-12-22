@@ -1,44 +1,33 @@
 const express = require('express');
-require('dotenv').config();
 const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
 const router = require('./routes/api');
 
-const {PORT = 3000, DB_HOST} = process.env;
+const a = 'a';
+console.log('test', a);
 
 mongoose.set('strictQuery', true);
 
 const app = express();
 
-(async () => {
-  await mongoose.connect(DB_HOST)
-    .then(() => console.log('Database connection successful'))
-    .catch(e => {
-      console.log(e.message);
-      process.exit(1);
-    });
+const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
-  const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
+app.use(logger(formatsLogger));
+app.use(cors());
+app.use(express.json());
 
-  app.use(logger(formatsLogger));
-  app.use(cors());
-  app.use(express.json());
+app.use('/api/contacts', router.contacts);
+app.use('/api/users', router.users);
 
-  app.use('/api/contacts', router.contacts);
-  app.use('/api/users', router.users);
+app.use((req, res) => {
+  res.status(404).json({message: 'Not found'});
+});
 
-  app.use((req, res) => {
-    res.status(404).json({message: 'Not found'});
-  });
+app.use((err, req, res, next) => {
+  const {status = 500, message = 'Server error'} = err;
+  res.status(status).json({message});
+});
 
-  app.use((err, req, res, next) => {
-    const {status = 500, message = 'Server error'} = err;
-    res.status(status).json({message});
-  });
-
-  app.listen(PORT, () => {
-    console.log(`Server running. Use our API on port: ${PORT}`);
-  });
-})();
+module.exports = app;

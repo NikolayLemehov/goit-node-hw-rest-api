@@ -23,6 +23,11 @@ const user = new Schema({
       type: String,
       default: null,
     },
+    avatarURL: {
+      type: String,
+      required: true,
+      default: 'avatars/default.png',
+    },
   },
   {versionKey: false, timestamps: true},
 );
@@ -44,9 +49,14 @@ const subscriptionJoiSchema = Joi.object({
   subscription: Joi.string().valid(...subscriptionTypes).required(),
 });
 
+const avatarJoiSchema = Joi.object({
+  avatar: Joi.binary().required(),
+});
+
 module.exports = {
   Model,
   registerJoiSchema,
   loginJoiSchema,
   subscriptionJoiSchema,
+  avatarJoiSchema,
 };

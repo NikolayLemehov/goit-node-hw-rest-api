@@ -1,6 +1,7 @@
 const {Model: User} = require('../../models').users;
 const createError = require("http-errors");
 const bcrypt = require('bcrypt');
+const gravatar = require('gravatar');
 
 const register = async (req, res) => {
 
@@ -9,13 +10,18 @@ const register = async (req, res) => {
   if (existedUser) throw createError(409, `Email in use`);
 
   const hashPassword = await bcrypt.hash(password, await bcrypt.genSalt(10));
-
-  const user = await User.create({email, password: hashPassword, subscription});
+  const avatarURL = gravatar.url(email);
+  const user = await User.create({email, password: hashPassword, avatarURL, subscription});
 
   res
     .status(201)
     .json({
-      data: {email},
+      data: {
+        id: user._id,
+        email: user.email,
+        avatarURL: user.avatarURL,
+        subscription: user.subscription,
+      },
       message: `User by id: ${user._id} has been created`,
     });
 };

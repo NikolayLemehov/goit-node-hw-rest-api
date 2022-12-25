@@ -20,4 +20,8 @@ router.patch('/avatars', auth,
   upload.single('avatar'),
   ctrlWrapper(ctrl.updateAvatar));
 
+router.get('/verify/:verificationToken', ctrlWrapper(ctrl.verifyEmail));
+
+router.get('/verify', validation(users.emailJoiSchema), ctrlWrapper(ctrl.verify));
+
 module.exports = router;

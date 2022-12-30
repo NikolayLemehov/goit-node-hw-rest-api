@@ -20,7 +20,7 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
   } catch (e) {
-    if (e.message === 'invalid signature') {
+    if (e.message === 'jwt expired' || e.message === 'invalid signature') {
       e.status = 401;
     }
     next(e);

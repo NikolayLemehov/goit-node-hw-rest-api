@@ -23,6 +23,12 @@ const user = new Schema({
       type: String,
       default: null,
     },
+    avatarURLType: {
+      type: String,
+      enum: ['local', 'web', 'default'],
+      required: true,
+      default: 'default',
+    },
     avatarURL: {
       type: String,
       required: true,

@@ -7,12 +7,15 @@ const publicDir = path.join(__dirname, '../../', 'public');
 const avatarDir = path.join(publicDir, 'avatars');
 
 const updateAvatar = async (req, res) => {
-  const {_id, avatarURL: oldAvatarURL} = req.user;
+  const {_id, avatarURL: oldAvatarURL, avatarURLType: oldAvatarURLType} = req.user;
   const {path: tempUpload, originalname} = req.file;
 
   const imageName = `${_id}_${originalname}`;
   const resultUpload = path.join(avatarDir, imageName);
-  await fs.unlink(path.join(publicDir, oldAvatarURL));
+  // console.log('oldAvatarURL', oldAvatarURL);
+  if (oldAvatarURLType === 'local') {
+    await fs.unlink(path.join(publicDir, oldAvatarURL));
+  }
 
   const img = await jimp.read(tempUpload);
   await img
@@ -27,13 +30,13 @@ const updateAvatar = async (req, res) => {
     });
 
   const avatarURL = path.join('avatars', imageName);
-  const user = await User.findByIdAndUpdate(_id, {avatarURL}, {new: true});
+  const user = await User.findByIdAndUpdate(_id, {avatarURL, avatarURLType: 'local'}, {new: true});
 
   res.status(200).json({
-    message: `Avatar has been changed to ${user.avatarURL}`,
     data: {
       avatar: user.avatarURL,
     },
+    message: `Avatar has been changed to ${user.avatarURL}`,
   });
 };
 

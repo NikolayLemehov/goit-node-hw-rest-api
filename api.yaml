@@ -6,6 +6,9 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:3000/api
+    description: local server
+  - url: https://nick-liemiekhov-goit-node-api.onrender.com/api
+    description: web server
 tags:
   - name: contact
     description: Everything about your Contacts

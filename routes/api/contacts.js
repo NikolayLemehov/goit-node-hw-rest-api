@@ -8,7 +8,15 @@ const {ctrlWrapper} = require('../../middlewares');
 const {pagination} = require("../../schemas");
 
 
-router.get('/', auth, validationQuery(pagination), ctrlWrapper(ctrl.getAll));
+router.get('/',
+  (req, res, next) => {
+    console.log('getAll', req.headers);
+    next();
+  },
+  auth,
+  validationQuery(pagination),
+  ctrlWrapper(ctrl.getAll),
+);
 
 router.get('/:contactId', ctrlWrapper(ctrl.getById));
 

@@ -13,6 +13,7 @@ const getById = async (req, res) => {
     .status(200)
     .json({
       data: {contact},
+      message: `Contact by id: ${contactId} has been deleted`,
     });
 };
 

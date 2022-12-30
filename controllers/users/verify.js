@@ -2,6 +2,8 @@ const CreateError = require('http-errors');
 const nanoid = require("nanoid");
 const {sendEmail} = require("../../helpers");
 const {Model: User} = require('../../models').users;
+const {DEFAULT_PORT} = require('../../config');
+const {LOCATION, PORT = DEFAULT_PORT} = process.env;
 
 const verify = async (req, res) => {
   const {email} = req.body;
@@ -18,7 +20,7 @@ const verify = async (req, res) => {
     to: email,
     subject: 'Approve email again',
     html: `<a
-            href="${process.env.LOCATION}/api/users/verify/${verificationToken}"
+            href="${LOCATION}:${PORT}/api/users/verify/${verificationToken}"
             target="_blank"
         >Push down for approve email</a>`,
   };

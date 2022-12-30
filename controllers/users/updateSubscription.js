@@ -5,11 +5,11 @@ const updateSubscription = async (req, res) => {
   const {subscription} = req.body;
   const user = await User.findByIdAndUpdate(_id, {subscription}, {new: true});
   res.status(200).json({
-    message: `Subscription has been changed to ${user.subscription}`,
     data: {
       email: user.email,
       subscription: user.subscription,
     },
+    message: `Subscription has been changed to ${user.subscription}`,
   });
 };
 

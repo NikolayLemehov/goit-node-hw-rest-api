@@ -2,6 +2,11 @@
   "name": "template",
   "version": "0.0.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./server.js",
     "start:inspect": "cross-env NODE_ENV=production node --inspect ./server.js",
@@ -39,6 +44,7 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "5.2.0",
+    "husky": "^8.0.2",
     "jest": "^29.3.1",
     "nodemon": "2.0.15",
     "supertest": "^6.3.3"

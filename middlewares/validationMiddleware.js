@@ -24,5 +24,5 @@ const updateContact = checkContactData;
 
 module.exports = {
   addContact,
-  updateContact
+  updateContact,
 };

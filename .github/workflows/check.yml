@@ -10,6 +10,6 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v3
       - name: Install deps
-        run: npm ci
+        run: npm i
       - name: Lint code
         run: npm run lint

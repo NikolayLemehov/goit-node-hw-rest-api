@@ -19,7 +19,7 @@ const checkContactData = (req, res, next) => {
 
 const addContact = checkContactData;
 
-const updateContact = checkContactData;
+const updateContact = checkContactDatad;
 
 
 module.exports = {

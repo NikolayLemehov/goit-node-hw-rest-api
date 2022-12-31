@@ -46,6 +46,7 @@
     "nodemon": "2.0.15",
     "supertest": "^6.3.3"
   },
+  "eslintIgnore": ["node_modules"],
   "lint-staged": {
     "./**/*.js": [
       "eslint --fix"

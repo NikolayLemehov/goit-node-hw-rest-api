@@ -7,7 +7,7 @@
     "start:inspect": "cross-env NODE_ENV=production node --inspect ./server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
     "start:dev-inspect": "cross-env NODE_ENV=development nodemon --inspect ./server.js",
-    "lint": "eslint **/*.js --ignore-pattern 'node_modules'",
+    "lint": "eslint **/*.js --ignore-pattern 'node_modules/ipaddr.js'",
     "lint:fix": "eslint --fix **/*.js",
     "test.jest": "jest",
     "test": "jest",

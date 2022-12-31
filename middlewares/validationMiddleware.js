@@ -18,6 +18,7 @@ const checkContactData = (req, res, next) => {
 };
 
 const addContact = checkContactData;
+
 const updateContact = checkContactData;
 
 

@@ -17,9 +17,9 @@ const checkContactData = (req, res, next) => {
   next();
 };
 
-const addContact = checkContactData;
+const addContact = checkContactDatad;
 
-const updateContact = checkContactDatad;
+const updateContact = checkContactData;
 
 
 module.exports = {

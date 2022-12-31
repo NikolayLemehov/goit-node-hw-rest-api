@@ -17,7 +17,7 @@ const checkContactData = (req, res, next) => {
   next();
 };
 
-const addContact = checkContactData;
+const addContact = checkContactDatad;
 
 const updateContact = checkContactData;
 

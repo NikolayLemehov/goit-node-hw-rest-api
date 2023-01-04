@@ -7,7 +7,6 @@ const app = express();
 app.get('/api/contacts', login);
 
 let server;
-// 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;
 describe('test login.js controller', () => {
 
   beforeAll((done) => {

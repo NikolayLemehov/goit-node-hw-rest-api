@@ -1,0 +1,15 @@
+name: Check push
+on:
+  push: []
+  pull_request:
+    types: [ opened, edited, reopened ]
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm i
+      - name: Lint code
+        run: npm run lint

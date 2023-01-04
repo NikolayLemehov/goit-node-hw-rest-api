@@ -7,10 +7,11 @@
     "start:inspect": "cross-env NODE_ENV=production node --inspect ./server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
     "start:dev-inspect": "cross-env NODE_ENV=development nodemon --inspect ./server.js",
-    "lint": "eslint **/*.js",
+    "lint": "eslint \"**/*.js\"",
     "lint:fix": "eslint --fix **/*.js",
     "test.jest": "jest",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
@@ -39,8 +40,16 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "5.2.0",
+    "husky": "^8.0.0",
     "jest": "^29.3.1",
+    "lint-staged": "^13.1.0",
     "nodemon": "2.0.15",
     "supertest": "^6.3.3"
+  },
+  "eslintIgnore": ["node_modules"],
+  "lint-staged": {
+    "./**/*.js": [
+      "eslint --fix"
+    ]
   }
 }
